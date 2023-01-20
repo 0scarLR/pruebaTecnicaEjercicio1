@@ -38,3 +38,11 @@
   position: absolute;
   height: 100%;
 }
+
+.btn-danger {
+  background-color: #d50000;
+}
+
+.bg-login {
+  background-color: rgba(214, 0, 0, 0.581);
+}
