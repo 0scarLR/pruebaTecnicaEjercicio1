@@ -1,0 +1,48 @@
+.img-fluid {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  position: fixed;
+}
+
+.nopagefound {
+  position: fixed;
+  top: 25%;
+  text-align: center;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.946);
+  text-shadow: 0 0 0.2em rgb(209, 28, 0), 0 0 0.2em rgba(247, 0, 0, 0.802);
+  font-family: cuatro;
+}
+
+@font-face {
+  font-family: uno;
+  src: url(../../../assets/font-family/uno.ttf);
+}
+@font-face {
+  font-family: dos;
+  src: url(../../../assets/font-family/dos.ttf);
+}
+@font-face {
+  font-family: tres;
+  src: url(../../../assets/font-family/tres.ttf);
+}
+@font-face {
+  font-family: cuatro;
+  src: url(../../../assets/font-family/cuatro.ttf);
+}
+@font-face {
+  font-family: cinco;
+  src: url(../../../assets/font-family/cinco.ttf);
+}
+@font-face {
+  font-family: seis;
+  src: url(../../../assets/font-family/seis.ttf);
+}
+@font-face {
+  font-family: siete;
+  src: url(../../../assets/font-family/siete.ttf);
+}
