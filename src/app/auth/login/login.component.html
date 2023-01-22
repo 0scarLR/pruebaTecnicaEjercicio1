@@ -13,10 +13,15 @@
       <div class="card-body">
         <form
           class="form-horizontal form-material"
+          autocomplete="off"
+          [formGroup]="loginForm"
+          (ngSubmit)="login()"
           id="loginform"
-          action="index.html"
         >
-          <h3 class="box-title m-b-20 text-white text-center">
+          <h3
+            style="font-family: cuatro"
+            class="box-title m-b-20 text-white text-center"
+          >
             Iniciar Sesion
           </h3>
 
@@ -25,8 +30,8 @@
               <input
                 class="form-control"
                 type="text"
-                required=""
                 placeholder="Nombre de usuario"
+                formControlName="name"
               />
             </div>
           </div>
@@ -35,8 +40,8 @@
               <input
                 class="form-control"
                 type="password"
-                required=""
                 placeholder="Contraseña"
+                formControlName="password"
               />
             </div>
           </div>
@@ -45,6 +50,7 @@
             <button
               class="btn btn-block btn-lg btn-danger btn-rounded"
               type="submit"
+              style="font-family: uno"
             >
               Acceder<img
                 class="img-fluid text-center"
