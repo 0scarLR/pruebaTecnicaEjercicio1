@@ -1,1 +1,74 @@
-<h2>dash</h2>
+<h3 class="text-light">Bienvenido {{ selectedUsuario$.value.name }}</h3>
+<hr class="text-light" />
+
+<div class="row row-cols-1 row-cols-md-2 justify-content-center">
+  <div
+    *ngFor="let pokemon of pokemones"
+    class="card p-3 m-3 border-light mb-3"
+    style="max-width: 18rem"
+  >
+    <div class="card-header text-center" style="background-color: #689f38">
+      <h4 style="color: rgba(255, 255, 255, 0.721); padding-left: 88%">
+        {{ pokemon.id }}
+      </h4>
+      <a href=""
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <div class="card-body">
+      <h2
+        class="card-title text-center"
+        style="font-family: cuatro; font-size: medium"
+      >
+        {{ pokemon.name }}
+      </h2>
+      <h6 class="card-title text-center text-black-50">
+        {{ pokemon.stats[0].base_stat }} hp
+      </h6>
+      <hr />
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Tipo: {{ pokemon.types[0].type.name }}</li>
+        <li class="list-group-item">
+          Experiencia: {{ pokemon.base_experience }}
+        </li>
+        <li class="list-group-item">Altura:{{ pokemon.height }}</li>
+        <li class="list-group-item">Peso: {{ pokemon.height }}</li>
+        <li class="list-group-item">
+          Mov Especial: {{ pokemon.moves[0].move.name }}
+        </li>
+      </ul>
+      <hr />
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">ATK</th>
+            <th scope="col">DEF</th>
+            <th scope="col">ATK +</th>
+            <th scope="col">DEF +</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="text-black-50 text-center">
+              {{ pokemon.stats[1].base_stat }}
+            </th>
+            <th class="text-black-50 text-center">
+              {{ pokemon.stats[2].base_stat }}
+            </th>
+            <th class="text-black-50 text-center">
+              {{ pokemon.stats[3].base_stat }}
+            </th>
+            <th class="text-black-50 text-center">
+              {{ pokemon.stats[4].base_stat }}
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- TODO: poner tipografia, background-color  -->

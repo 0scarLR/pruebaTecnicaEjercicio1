@@ -26,3 +26,19 @@
   font-family: siete;
   src: url(../assets/font-family/siete.ttf);
 }
+@font-face {
+  font-family: ocho;
+  src: url(../assets/font-family/ocho.ttf);
+}
+@font-face {
+  font-family: nueve;
+  src: url(../assets/font-family/nueve.ttf);
+}
+@font-face {
+  font-family: diezA;
+  src: url(../assets/font-family/diezA.ttf);
+}
+@font-face {
+  font-family: diezB;
+  src: url(../assets/font-family/diezB.ttf);
+}
