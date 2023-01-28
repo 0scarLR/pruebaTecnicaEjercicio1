@@ -9,10 +9,15 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   getPokemons() {
-    return this.http.get(environment.url + 'pokemon?limit=25');
+    return this.http.get(environment.url + 'pokemon?limit=9');
   }
 
   getPokemonId(id: String) {
     return this.http.get(environment.url + `pokemon/${id}`);
+  }
+  getDescription(id: String) {
+    return this.http.get('https://pokeapi.co/api/v2/ability/1/');
+
+    //"https://pokeapi.co/api/v2/language/7/"
   }
 }

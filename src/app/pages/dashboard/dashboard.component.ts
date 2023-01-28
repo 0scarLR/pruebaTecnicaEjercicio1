@@ -10,6 +10,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class DashboardComponent implements OnInit {
   pokemones: any[] = [];
   selectedUsuario$ = this.usuarioService.usuario$;
+  name: any;
+  nombrePokemon: any;
+  descriptionPokemon: any;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -17,15 +20,29 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDescription('1');
     this.pokemonService.getPokemons().subscribe((response: any) => {
       response.results.forEach((result: any) => {
         this.pokemonService
           .getPokemonId(result.name)
           .subscribe((uniqResponse: any) => {
             this.pokemones.push(uniqResponse);
-            console.log(this.pokemones);
+            this.name = uniqResponse.name;
+            console.log(uniqResponse);
           });
       });
+    });
+  }
+  getIdPokemon(id: String) {
+    this.pokemonService.getPokemonId(id).subscribe((respPokemon: any) => {
+      this.nombrePokemon = respPokemon.name;
+    });
+  }
+
+  getDescription(id: String) {
+    this.pokemonService.getDescription(id).subscribe((respDescription: any) => {
+      this.descriptionPokemon = respDescription;
+      console.log('metodo description ' + this.descriptionPokemon);
     });
   }
 }

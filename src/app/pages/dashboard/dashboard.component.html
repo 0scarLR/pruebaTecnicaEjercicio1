@@ -5,13 +5,289 @@
   <div
     *ngFor="let pokemon of pokemones"
     class="card p-3 m-3 border-light mb-3"
-    style="max-width: 18rem"
+    style="max-width: 18rem; background-color: #fafafa"
   >
-    <div class="card-header text-center" style="background-color: #689f38">
-      <h4 style="color: rgba(255, 255, 255, 0.721); padding-left: 88%">
+    <!-- card header color type glass -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'grass'"
+      class="card-header text-center"
+      style="background: linear-gradient(#689f38, #ccffa0)"
+    >
+      <h4 style="color: black; padding-left: 82%">
         {{ pokemon.id }}
       </h4>
-      <a href=""
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type normal -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'normal'"
+      class="card-header text-center"
+      style="background: linear-gradient(#cfd4b6, #faffe1)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type bug -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'bug'"
+      class="card-header text-center"
+      style="background: linear-gradient(#016529, #6fd196)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type poison -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'poison'"
+      class="card-header text-center"
+      style="background: linear-gradient(#832ebc, #dba5ff)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type fire -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'fire'"
+      class="card-header text-center"
+      style="background: linear-gradient(#d70202, #fc6969)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type water -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'water'"
+      class="card-header text-center"
+      style="background: linear-gradient(#026ec7, #71bfff)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type electric -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'electric'"
+      class="card-header text-center"
+      style="background: linear-gradient(#f5ed00, #fffca2)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+
+    <!-- card header color type ghost -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'ghost'"
+      class="card-header text-center"
+      style="background: linear-gradient(#2c2736, #5d5877)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+
+    <!-- card header color type psychic -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'psychic'"
+      class="card-header text-center"
+      style="background: linear-gradient(#c536f8, #3f32bb)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type ground -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'ground'"
+      class="card-header text-center"
+      style="background: linear-gradient(#756e66, #a49484)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type fairy -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'fairy'"
+      class="card-header text-center"
+      style="background: linear-gradient(#ffabba, #ffe1e3)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type rock -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'rock'"
+      class="card-header text-center"
+      style="background: linear-gradient(#7d7b64, #cecaaf)"
+    >
+      <h4 style="color: black; padding-left: 85%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type fighting -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'fighting'"
+      class="card-header text-center"
+      style="background: linear-gradient(#f6eead, #99e4f9)"
+    >
+      <h4 style="color: black; padding-left: 85%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type ice -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'ice'"
+      class="card-header text-center"
+      style="background: linear-gradient(#58e4ff, #fdfeff)"
+    >
+      <h4 style="color: black; padding-left: 85%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
+        ><img
+          class="rounded-circle img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Pokemon"
+      /></a>
+    </div>
+    <!-- card header color type dragon -->
+    <div
+      *ngIf="pokemon.types[0].type.name === 'dragon'"
+      class="card-header text-center"
+      style="background: linear-gradient(#0d0d0d, #009899)"
+    >
+      <h4 style="color: black; padding-left: 82%">
+        {{ pokemon.id }}
+      </h4>
+      <a
+        (click)="getIdPokemon(pokemon.id)"
+        data-bs-toggle="modal"
+        data-bs-target="#pokemonModal"
         ><img
           class="rounded-circle img-fluid"
           [src]="pokemon.sprites.front_default"
@@ -29,8 +305,10 @@
         {{ pokemon.stats[0].base_stat }} hp
       </h6>
       <hr />
+
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Tipo: {{ pokemon.types[0].type.name }}</li>
+
         <li class="list-group-item">
           Experiencia: {{ pokemon.base_experience }}
         </li>
@@ -71,4 +349,46 @@
     </div>
   </div>
 </div>
+
+<!-- modal -->
+
+<div class="modal-dialog-centered">
+  <div
+    class="modal fade"
+    id="pokemonModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="nombre">
+            Evolucion de {{ nombrePokemon }}
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">...</div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- fin modal -->
+
 <!-- TODO: poner tipografia, background-color  -->
