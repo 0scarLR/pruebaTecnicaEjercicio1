@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Pokemon } from '../models/pokemon.model';
+import { PokemonSpecie } from '../models/pokemon.specie';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,15 +11,17 @@ export class PokemonService {
   constructor(private http: HttpClient) {}
 
   getPokemons() {
-    return this.http.get(environment.url + 'pokemon?limit=9');
+    return this.http.get(environment.url + 'pokemon?limit=30');
   }
 
   getPokemonId(id: String) {
-    return this.http.get(environment.url + `pokemon/${id}`);
+    return this.http.get<Pokemon>(environment.url + `pokemon/${id}`);
   }
-  getDescription(id: String) {
-    return this.http.get('https://pokeapi.co/api/v2/ability/1/');
 
-    //"https://pokeapi.co/api/v2/language/7/"
+  getEspecie(url: String) {
+    return this.http.get<PokemonSpecie>(url + '');
+  }
+  getEvolution(url: String) {
+    return this.http.get(url + '');
   }
 }
