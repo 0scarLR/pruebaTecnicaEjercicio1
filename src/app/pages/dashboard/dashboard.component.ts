@@ -3,7 +3,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-/* TODO: generar una interface para implementarla en el array evolution para poder manipular la informacion en el modal */
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,10 +15,10 @@ export class DashboardComponent implements OnInit {
   selectedUsuario$ = this.usuarioService.usuario$;
   name: any;
   nombrePokemon: any;
-  descriptionPokemon: any;
   evolutionPokemons: any[] = [];
   evolutionsname: any[] = [];
-  color: any;
+  load: boolean = false;
+
   constructor(
     private usuarioService: UsuarioService,
     private pokemonService: PokemonService,
@@ -26,15 +26,26 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /* TODO: Ya regresa los nombres de los pokemon en el nuevo arreglo falta sus card en el modal y pasarle bien la url */
+    this.getPokemons();
+  }
+
+  getPokemons() {
     this.pokemonService.getPokemons().subscribe((response: any) => {
       response.results.forEach((result: any) => {
-        this.pokemonService
-          .getPokemonId(result.name)
-          .subscribe((uniqResponse: any) => {
-            this.pokemones.push(uniqResponse);
-            this.name = uniqResponse.name;
-          });
+        /*  */
+        setTimeout(() => {
+          this.pokemonService
+            .getPokemonId(result.name)
+            .subscribe((uniqResponse: any) => {
+              //console.log(uniqResponse);
+              this.load = true;
+              if (uniqResponse) {
+                this.pokemones.push(uniqResponse);
+              }
+              this.name = uniqResponse.name;
+            });
+        }, 400);
+        /*  */
       });
     });
   }
@@ -63,7 +74,6 @@ export class DashboardComponent implements OnInit {
                 });
             });
           /* fin evolucion lv1 */
-          console.log(this.evolutionPokemons);
           /* evolucion lv2 */
           if (res.chain.evolves_to.length !== 0) {
             let pokemonlv2 = res.chain.evolves_to[0].species.name;
@@ -109,30 +119,79 @@ export class DashboardComponent implements OnInit {
       /* fin Regresa las evoluciones */
     });
   }
-  cerrarModal() {
+  limpiarArray() {
     this.evolutionPokemons.splice(0, this.evolutionPokemons.length);
+  }
+  limpiarArraryPokemons() {
+    this.pokemones.splice(0, this.pokemones.length);
   }
   getIdPokemon(id: String) {
     this.pokemonService.getPokemonId(id).subscribe((respPokemon: any) => {
       this.nombrePokemon = respPokemon.name;
     });
   }
+  getPokemonTipo(tipo: String) {
+    this.limpiarArraryPokemons();
+    this.pokemonService.getPokemonTipo(tipo).subscribe(
+      (resp: any) => {
+        /*  */
+        if (resp) {
+          resp.pokemon.forEach((result: any) => {
+            //console.log(result);
+            if (result.slot == 1) {
+              this.pokemonService
+                .getPokemonId(result.pokemon.name)
+                .subscribe((respTipo: any) => {
+                  this.pokemones.push(respTipo);
+                });
+            }
+          });
+        }
+      },
+      (err) => {
+        Swal.fire('Pokemon no encontrado y tipo', err.error.msg, 'error');
+      }
+    );
+    /* TODO: loader de carga y paginacion */
+  }
+
+  buscarPokemon(pokemon: String) {
+    if (pokemon != '') {
+      setTimeout(() => {
+        this.pokemonService.getPokemonId(pokemon).subscribe(
+          (respuesta: any) => {
+            if (respuesta) {
+              this.limpiarArraryPokemons();
+              this.pokemones.push(respuesta);
+            } else {
+              this.pokemones;
+            }
+          },
+          (err) => {
+            if (err) {
+              this.getPokemonTipo(pokemon);
+            }
+          }
+        );
+      }, 400);
+    } else {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Ingresa un Pokemon, ID o Tipo para la busqueda',
+        showConfirmButton: false,
+        timer: 2000,
+      });
+    }
+  }
 
   cerrarSesion() {
     this.router.navigate(['/login']);
     localStorage.setItem('sesion', 'false');
   }
-
-  buscarPokemon(pokemon: String) {
-    console.log('buscar pokemon->' + pokemon);
-    this.pokemonService.getPokemonId(pokemon).subscribe((respuesta: any) => {});
-  }
 }
 
 /* 
 TODO: 
-funcion en el buscador falta filtrar las tarjetas
-mostrar evoluciones en las card, ya esta el servicio falta la funcion para regresar las evoluciones 
-para ello se necesita otro arreglo de pokemon por evolucion
 
 */
