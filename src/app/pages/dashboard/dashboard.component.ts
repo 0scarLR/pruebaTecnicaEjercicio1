@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   evolutionPokemons: any[] = [];
   evolutionsname: any[] = [];
   load: boolean = false;
+  page: number = 1;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -31,23 +32,23 @@ export class DashboardComponent implements OnInit {
 
   getPokemons() {
     this.pokemonService.getPokemons().subscribe((response: any) => {
-      response.results.forEach((result: any) => {
-        /*  */
-        setTimeout(() => {
-          this.pokemonService
-            .getPokemonId(result.name)
-            .subscribe((uniqResponse: any) => {
-              //console.log(uniqResponse);
-              this.load = true;
-              if (uniqResponse) {
-                this.pokemones.push(uniqResponse);
-              }
-              this.name = uniqResponse.name;
-            });
-        }, 400);
-        /*  */
-      });
+      setTimeout(() => {
+        response.results.forEach((result: any) => {
+          this.consulta(result.name);
+        });
+      }, 1000);
     });
+  }
+  consulta(result: String) {
+    setTimeout(() => {
+      this.pokemonService
+        .getPokemonId(result)
+        .subscribe((uniqResponse: any) => {
+          this.load = true;
+          this.pokemones.push(uniqResponse);
+          this.name = uniqResponse.name;
+        });
+    }, 400);
   }
 
   evolutions(nombre: String, url: String) {
@@ -152,10 +153,11 @@ export class DashboardComponent implements OnInit {
         Swal.fire('Pokemon no encontrado y tipo', err.error.msg, 'error');
       }
     );
-    /* TODO: loader de carga y paginacion */
   }
 
   buscarPokemon(pokemon: String) {
+    pokemon = pokemon.toLowerCase();
+
     if (pokemon != '') {
       setTimeout(() => {
         this.pokemonService.getPokemonId(pokemon).subscribe(
@@ -191,7 +193,4 @@ export class DashboardComponent implements OnInit {
   }
 }
 
-/* 
-TODO: 
-
-*/
+/* TODO:  paginacion y bajar la card cuando se sepliegue el menu*/

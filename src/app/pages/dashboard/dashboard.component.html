@@ -20,7 +20,7 @@
         <input
           #inputSearch
           autofocus
-          class="form-control me-2 text-lowercase"
+          class="form-control me-2"
           type="text"
           placeholder="Buscar pokemon"
           aria-label="Search"
@@ -53,17 +53,20 @@
 </nav>
 <!-- fin navbar -->
 <!-- cards de pokemones -->
-<div class="justify-content-center" *ngIf="!load">
+<div class="justify-content-center d-flex" *ngIf="!load">
   <div class="spinner spinner-border text-danger" role="status"></div>
 </div>
-<div *ngIf="load">
+<div class="cardsPokemon" *ngIf="load">
   <div class="container">
     <!-- mostrar nombre de usuario desde servicio usuario -->
     <h3 class="text-light">Bienvenido {{ selectedUsuario$.value.name }}</h3>
     <hr class="text-light" />
-    <div class="row row-cols-1 row-cols-md-2 justify-content-center">
+    <div class="row row-cols-1 row-cols-md-1 justify-content-center">
       <div
-        *ngFor="let pokemon of pokemones"
+        *ngFor="
+          let pokemon of pokemones
+            | paginate : { itemsPerPage: 3, currentPage: page }
+        "
         class="card p-3 m-3 border-light mb-3"
         style="max-width: 18rem; background-color: #fafafa"
       >
@@ -445,6 +448,7 @@
     </div>
   </div>
 </div>
+
 <!-- modal para visualizar las evoluciones de nuestro pokemon seleccionado-->
 
 <div class="modal-dialog-centered">
@@ -688,3 +692,10 @@
 <!-- fin modal -->
 
 <!-- TODO: poner tipografia, background-color  -->
+<pagination-controls
+  class="text-center"
+  style="color: white"
+  (pageChange)="page = $event"
+  previousLabel="Anterior"
+  nextLabel="Siguiente"
+></pagination-controls>
